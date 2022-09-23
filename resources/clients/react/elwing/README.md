@@ -16,7 +16,7 @@ to focus on defining pages and content rather than app structure.
 
 ### What is a plugin?
 
-A plugin is just JS Object containing the following properties:
+A plugin is just a JavaScript Object containing the following properties:
 
 - `linkText` - The text of the link which will display in the sidebar navigation
 - `fragment` - The url fragment to be used for routing, this needs to be unique from other plugins
