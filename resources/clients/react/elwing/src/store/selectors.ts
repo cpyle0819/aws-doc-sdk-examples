@@ -1,4 +1,4 @@
-import { prop, map, compose, project } from "ramda";
+import { prop, map, compose } from "ramda";
 
 const selectPlugins = prop("plugins");
 
