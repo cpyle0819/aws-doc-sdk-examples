@@ -5,6 +5,7 @@ layout accelerates development time by exposing a simple plugin API allowing a d
 to focus on defining pages and content rather than app structure.
 
 ## Prerequisites
+
 1. Install NodeJS 18
 
 ## Run
@@ -13,7 +14,7 @@ to focus on defining pages and content rather than app structure.
 1. Run `yarn start`.
 1. Navigate to the URL logged in the console.
 
-## Add a plugin
+### What is a plugin?
 
 A plugin is just JS Object containing the following properties:
 
@@ -21,24 +22,41 @@ A plugin is just JS Object containing the following properties:
 - `fragment` - The url fragment to be used for routing, this needs to be unique from other plugins
 - `component` - The component that will display when the link in the sidebar is clicked
 
-### Example
+## Add a plugin
+> ⚠️**WARNING:** The automated steps will overwrite the `manifest.ts` file with the latest
+> plugins from the `plugins` directory. 
 
-```javascript
-const ExamplePlugin = {
-  linkText: "Plugin Example",
-  fragment: "/my_plugin",
-  component: () => <h1>Hello, Example!</h1>,
-};
+### Automated steps
+A convenience script has been added to support the quick creation of a plugin.
 
-export { ExamplePlugin };
-```
-### Declare the plugin
-The created plugin can then be declared in the store. Order is important.
-The links in the sidebar will display in the same order as the list of plugins
-in the store.
+1. `yarn create-plugin <plugin-name>`
+2. Find your plugin in the `plugins` directory.
+3. Make it your own!
 
-```javascript
-const useStore = create(() => ({
-  plugins: [RootPlugin, ExamplePlugin],
-}));
-```
+
+### Manual steps
+If you want to create a plugin manually instead of using the script, you can do so.
+
+1. Create a new folder in the plugins directory, e.g. `my-plugin`
+2. Add an `index.ts` file to the folder and populate it using the below as an example.
+  ```javascript
+    const ExamplePlugin = {
+      linkText: "My Plugin",
+      fragment: "/my_plugin",
+      component: lazy(() => import("./MyPluginComponent"),
+    };
+
+    export { ExamplePlugin };
+  ```
+3. Add a `MyPlugin.tsx` file to the folder and populate it with component code.
+  ```javascript
+  const component = () => <h1>Hello, my-component!</h1>;
+  export default component;
+  ```
+4. Open `plugins/manifest.ts` and add your plugin to the `plugins` array.
+  ```javascript
+  import { RootPlugin } from "./root-plugin";
+  import { MyPlugin } from "./my-plugin";
+  const plugins = [RootPlugin, MyPlugin];
+  export default plugins;
+  ```

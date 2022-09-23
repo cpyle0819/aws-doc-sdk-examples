@@ -4,12 +4,12 @@
  */
 
 import { writeFileSync } from "fs";
-import { kebabCase, pascalCase } from "../libs/utils/util-string";
-import { nthAdjust } from "../libs/ext-ramda";
+import { kebabCase, pascalCase } from "../../libs/utils/util-string";
+import { nthAdjust } from "../../libs/ext-ramda";
 import { getArgValidationErrors } from "./validations";
 import { makePluginPath } from "./path-builder";
-import { makePluginContents } from "./content-builder";
-import { registerPlugin } from './register';
+import { makeComponentContents, makePluginContents } from "./content-builder";
+import { refreshRegistry } from "./register";
 
 (async () => {
   const errors = getArgValidationErrors(process.argv);
@@ -22,6 +22,8 @@ import { registerPlugin } from './register';
   const pluginName = nthAdjust(2, kebabCase, process.argv);
   const path = makePluginPath(pluginName);
   const pluginContents = makePluginContents(pluginName);
-  writeFileSync(`${path}/${pascalCase(pluginName)}.tsx`, pluginContents);
-  registerPlugin(pluginName);
+  const componentContents = makeComponentContents(pluginName);
+  writeFileSync(`${path}/index.ts`, pluginContents);
+  writeFileSync(`${path}/${pascalCase(pluginName)}Component.tsx`, componentContents);
+  refreshRegistry();
 })();

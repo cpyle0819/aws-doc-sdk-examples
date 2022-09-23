@@ -7,7 +7,7 @@
   "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "create-plugin": "npx ts-node plugin-creator",
+    "create-plugin": "npx ts-node src/plugin-creator",
     "start": "parcel",
     "build": "parcel build"
   },

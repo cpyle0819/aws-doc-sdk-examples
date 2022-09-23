@@ -4,7 +4,9 @@
  */
 
 import { pipe, length, equals, nth, test } from "ramda";
-import { validate, validationErrors } from "../libs/validator";
+import { validate, validationErrors } from "../../libs/validator";
+
+const pluginNamePattern = /^[A-Za-z]+-?[A-Za-z]+$/;
 
 const validateNumArgs = (numArgs: number) =>
   validate(
@@ -25,9 +27,9 @@ const validateNthMatches = (n: number, pattern: RegExp) =>
 const validateArgs = pipe(
   (args: string[]) => ({ subject: args, errors: [] }),
   validateNumArgs(3),
-  validateNthMatches(2, /^[A-Za-z]+-?[A-Za-z]+$/)
+  validateNthMatches(2, pluginNamePattern)
 );
 
 const getArgValidationErrors = pipe(validateArgs, validationErrors);
 
-export { getArgValidationErrors };
+export { getArgValidationErrors, pluginNamePattern };

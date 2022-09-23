@@ -4,8 +4,8 @@
  */
 
 import { pipe, concat } from "ramda";
-import { makeDir } from "../libs/utils/util-fs";
-import { kebabCase } from "../libs/utils/util-string";
+import { makeDir } from "../../libs/utils/util-fs";
+import { kebabCase } from "../../libs/utils/util-string";
 
 const makePluginPath = pipe(
   kebabCase,

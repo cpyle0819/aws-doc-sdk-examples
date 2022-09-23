@@ -23,10 +23,4 @@ const component = () => {
   );
 };
 
-const RootPlugin = {
-  linkText: "Welcome",
-  fragment: "/",
-  component,
-};
-
-export { RootPlugin };
+export default component;
