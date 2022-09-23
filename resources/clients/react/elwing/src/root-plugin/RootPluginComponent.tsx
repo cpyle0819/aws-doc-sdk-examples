@@ -3,18 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import raw from "raw.macro";
 import { useEffect, useState } from "react";
-import { readFileSync } from "fs";
 import { Converter } from "showdown";
-import { join } from "path";
 
 const converter = new Converter();
 
-const component = () => {
+const RootPluginComponent = () => {
   const [md, setMd] = useState("");
 
   useEffect(() => {
-    const file = readFileSync(join(__dirname, "/../../README.md"), "utf-8");
+    const file = raw("../../README.md");
     setMd(file);
   }, []);
 
@@ -23,4 +22,4 @@ const component = () => {
   );
 };
 
-export default component;
+export default RootPluginComponent;
