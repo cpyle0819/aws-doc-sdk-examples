@@ -1,3 +1,8 @@
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import create from "zustand";
 import { RootPlugin } from "./RootPlugin";
 
@@ -15,4 +20,4 @@ const useStore = create<AppState>(() => ({
   plugins: [RootPlugin],
 }));
 
-export { useStore };
+export { AppPlugin, useStore };

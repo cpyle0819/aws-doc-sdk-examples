@@ -1,4 +1,9 @@
-import { pipe, split, toLower, join, adjust, toUpper, map } from "ramda";
+/**
+ * Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { pipe, toLower, split, toUpper, map, join, adjust } from "ramda";
 
 const downcaseSplit = pipe(toLower, split("-"));
 
@@ -20,4 +25,11 @@ const snakeCase = pipe(downcaseSplit, join("_"));
 
 const titleCase = pipe(downcaseSplit, map(capitalize), join(" "));
 
-export { capitalize, kebabCase, pascalCase, snakeCase, titleCase };
+export {
+  downcaseSplit,
+  capitalize,
+  kebabCase,
+  pascalCase,
+  snakeCase,
+  titleCase,
+};
