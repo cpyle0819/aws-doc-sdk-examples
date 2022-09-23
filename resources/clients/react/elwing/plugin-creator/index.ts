@@ -5,10 +5,11 @@
 
 import { writeFileSync } from "fs";
 import { kebabCase, pascalCase } from "../libs/utils/util-string";
-import { getArgValidationErrors } from "./validations";
 import { nthAdjust } from "../libs/ext-ramda";
+import { getArgValidationErrors } from "./validations";
 import { makePluginPath } from "./path-builder";
 import { makePluginContents } from "./content-builder";
+import { registerPlugin } from './register';
 
 (async () => {
   const errors = getArgValidationErrors(process.argv);
@@ -22,4 +23,5 @@ import { makePluginContents } from "./content-builder";
   const path = makePluginPath(pluginName);
   const pluginContents = makePluginContents(pluginName);
   writeFileSync(`${path}/${pascalCase(pluginName)}.tsx`, pluginContents);
+  registerPlugin(pluginName);
 })();

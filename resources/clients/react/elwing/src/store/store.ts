@@ -4,7 +4,7 @@
  */
 
 import create from "zustand";
-import { RootPlugin } from "./RootPlugin";
+import { plugins } from '../../plugins';
 
 interface AppPlugin {
   linkText: string;
@@ -16,8 +16,6 @@ interface AppState {
   plugins: AppPlugin[];
 }
 
-const useStore = create<AppState>(() => ({
-  plugins: [RootPlugin],
-}));
+const useStore = create<AppState>(() => ({ plugins }));
 
 export { AppPlugin, useStore };

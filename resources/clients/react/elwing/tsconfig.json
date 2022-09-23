@@ -4,7 +4,8 @@
     "module": "ESNext",
     "moduleResolution": "NodeNext",
     "noUnusedLocals": true,
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "resolveJsonModule": true
   },
   "ts-node": {
     "compilerOptions": {

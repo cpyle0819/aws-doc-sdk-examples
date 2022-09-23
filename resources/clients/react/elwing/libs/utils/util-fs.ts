@@ -3,9 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { existsSync, mkdirSync } from "fs";
-import { identity, ifElse, tap } from "ramda";
+import { existsSync, mkdirSync, readFileSync } from "fs";
+import { identity, ifElse, pipe, tap, invoker, split } from "ramda";
 
 const makeDir = ifElse(existsSync, identity, tap(mkdirSync));
 
-export { makeDir };
+const readLines = pipe(readFileSync, invoker(0, "toString"), split("\n"));
+
+export { makeDir, readLines };
