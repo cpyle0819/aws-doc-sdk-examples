@@ -3,32 +3,25 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { prop, map, compose } from "ramda";
-import { AppPlugin } from "./store";
+import { AppPlugin, AppState } from "./store";
 import { RouteProps } from "../components/Content";
-import { NavigationItem } from "../components/Navigation";
+import { SideNavigationProps } from "@cloudscape-design/components";
 
-const selectPlugins = prop("plugins");
-
-const selectPluginNavigationItems = compose(
-  map(
-    ({ linkText, fragment }): NavigationItem => ({
+const selectPluginNavigationItems = (state: AppState) =>
+  state.plugins.map(
+    ({ linkText, fragment }: AppPlugin): SideNavigationProps.Item => ({
       type: "link",
       text: linkText,
       href: fragment,
     })
-  ),
-  selectPlugins
-);
+  );
 
-const selectPluginRoutes = compose(
-  map(
+const selectPluginRoutes = (state: AppState) =>
+  state.plugins.map(
     ({ fragment, component }: AppPlugin): RouteProps => ({
       path: fragment,
       element: component,
     })
-  ),
-  selectPlugins
-);
+  );
 
 export { selectPluginNavigationItems, selectPluginRoutes };

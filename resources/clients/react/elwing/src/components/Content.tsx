@@ -8,16 +8,16 @@ import { LazyExoticComponent } from "react";
 import { Suspense } from "react";
 import { Routes, Route, PathRouteProps } from "react-router-dom";
 
-interface RouteProps {
+export interface RouteProps {
   path: PathRouteProps["path"];
   element: LazyExoticComponent<() => JSX.Element>;
 }
 
-interface ContentProps {
+export interface ContentProps {
   routes: RouteProps[];
 }
 
-const Content = ({ routes }: ContentProps) => (
+export const Content = ({ routes }: ContentProps) => (
   <Container>
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
@@ -32,5 +32,3 @@ const Content = ({ routes }: ContentProps) => (
     </Suspense>
   </Container>
 );
-
-export { Content, ContentProps, RouteProps };

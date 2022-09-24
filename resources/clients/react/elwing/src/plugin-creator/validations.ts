@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { pipe, length, equals, nth, test } from "ramda";
+import { pipe, length, equals, nth, test, defaultTo } from "ramda";
 import { validate, validationErrors } from "../../libs/validator";
 
 const pluginNamePattern = /^[A-Za-z]+-?[A-Za-z]+$/;
@@ -21,7 +21,7 @@ const validateNthMatches = (n: number, pattern: RegExp) =>
   validate(
     (actual: string[]) =>
       `Invalid format. Expected <plugin-name> (no spaces, 1 dash, only letters), got ${actual[2]}.`,
-    pipe(nth(n), test(pattern))
+    pipe(nth(n), defaultTo(""), test(pattern))
   );
 
 const validateArgs = pipe(

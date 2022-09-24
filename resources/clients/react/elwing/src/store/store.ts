@@ -6,14 +6,13 @@
 import create from "zustand";
 import plugins from "../plugins/manifest";
 import { RootPluginComponent } from "../root-plugin";
-import { AppPlugin } from "../plugins/plugin.d";
+import type { AppPlugin } from "../plugins/plugin.d";
+export type { AppPlugin } from "../plugins/plugin.d";
 
-interface AppState {
+export interface AppState {
   plugins: AppPlugin[];
 }
 
-const useStore = create<AppState>(() => ({
+export const useStore = create<AppState>(() => ({
   plugins: [RootPluginComponent, ...plugins],
 }));
-
-export { AppPlugin, useStore };

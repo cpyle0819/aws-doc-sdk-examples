@@ -9,13 +9,11 @@ import {
 } from "@cloudscape-design/components";
 import { useNavigate } from "react-router-dom";
 
-type NavigationItem = SideNavigationProps["items"][0];
-
-interface NavigationProps {
-  items: NavigationItem[];
+export interface NavigationProps {
+  items: SideNavigationProps.Item[];
 }
 
-const Navigation = ({ items }: NavigationProps) => {
+export const Navigation = ({ items }: NavigationProps) => {
   const navigate = useNavigate();
 
   return (
@@ -31,5 +29,3 @@ const Navigation = ({ items }: NavigationProps) => {
     ></SideNavigation>
   );
 };
-
-export { Navigation, NavigationProps, NavigationItem };

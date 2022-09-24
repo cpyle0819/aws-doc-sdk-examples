@@ -1,6 +1,6 @@
 import { LazyExoticComponent } from "react";
 
-declare interface AppPlugin {
+export interface AppPlugin {
   linkText: string;
   fragment: string;
   component: LazyExoticComponent<() => JSX.Element>;
